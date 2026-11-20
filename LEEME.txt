@@ -1,0 +1,59 @@
+SISTEMA DE CAJA - BODEGA BG
+===========================
+
+Es el mismo sistema que el del minimarket, pero para un solo negocio: la bodega.
+Todo se cobra en una caja y las ventas, ganancias, gastos y créditos son de la bodega.
+
+USUARIOS INICIALES
+- Administrador:  usuario admin   / contraseña admin123
+- Cajero:         usuario caja    / contraseña 1234
+Cámbielas apenas empiece: toque su nombre arriba a la derecha (Mi perfil).
+
+PONERLO EN INTERNET (una sola vez)
+Los datos se guardan en el servidor, así son los mismos en la compu y en el celular.
+
+1. Servidor de datos (cPanel)
+   - Domains > Create A New Domain > api-bodegabg.spynetpy.com
+     (destilde "Share document root").
+   - En el Administrador de archivos abra la carpeta de ese subdominio y suba api.php
+     (está en la carpeta "api-bodegabg" de este zip).
+   - SSL/TLS Status > marque api-bodegabg.spynetpy.com > Run AutoSSL.
+   - Pruebe: https://api-bodegabg.spynetpy.com/api.php
+     debe mostrar {"ok":false,"error":"Acción desconocida"}
+
+2. La página (GitHub)
+   - Cree un repositorio nuevo, por ejemplo invitamos/bodegabg, y suba el contenido
+     de la carpeta "sitio" (index.html, CNAME, css, js, img).
+   - Settings > Pages > Branch: main / (root) > Save.
+   - Custom domain: bodegabg.spynetpy.com > Save. Cuando se pueda, marque Enforce HTTPS.
+   - En cPanel > Zone Editor > + Add Record:
+     Name: bodegabg   Type: CNAME   Record: invitamos.github.io
+
+3. Abra https://bodegabg.spynetpy.com e ingrese con admin / admin123.
+   El primer ingreso deja cargados en el servidor los productos y usuarios iniciales.
+
+Si usa otros nombres de dominio, cambie el archivo CNAME y, en js/app.js,
+la línea que empieza con "const SERVIDORES".
+
+PRODUCTOS Y CATEGORÍAS
+Viene con categorías de bodega (Cervezas, Tragos y licores, Vinos, Gaseosas y aguas,
+Energizantes, Hielos, Cigarrillos, Snacks y golosinas) y productos de ejemplo.
+Edite precios, costos y stock en Productos, o borre los que no use.
+
+CAJA CERRADA
+Con la caja cerrada no se pueden hacer ventas, compras de mercadería ni gastos.
+El sistema avisa y ofrece abrir la caja en el momento.
+
+TICKET, FACTURA Y WHATSAPP
+Al cobrar se elige Ticket o Factura. Después del cobro: Imprimir, Hacer factura,
+Descargar PDF y WhatsApp. En Configuración se cargan dirección, RUC, timbrado y la firma.
+
+VENCIMIENTOS Y STOCK
+La campanita avisa los productos por terminarse, vencidos y por vencer.
+La fecha de vencimiento se carga en Productos > Editar o al cargar mercadería.
+
+INFORMES
+Menú Informes: por fechas, con descarga en PDF y Excel.
+
+ATAJOS DE TECLADO
+F1 Inicio · F2 Vender · F3 Buscar producto · F4 Cobrar · F8 Cancelar venta · Esc cerrar ventana
